@@ -1,6 +1,8 @@
+mod central;
+mod port;
 
 #[derive(Debug)]
-struct Question {
+pub struct Question {
     text: String,
     answers: Vec<String>,
     correct: usize
@@ -10,7 +12,8 @@ struct Question {
 #[tokio::main]
 async fn main() {
     let questions = read_file("questions/Q1.txt");
-    println!("{:?}", questions);
+
+    central::run_game(questions).await;
 }
 
 
